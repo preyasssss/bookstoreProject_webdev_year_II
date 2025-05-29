@@ -2,6 +2,9 @@
 require 'db.php';
 require 'User.php';
 
+include 'navbar.php';
+
+
 $user = new User($conn);
 $message = '';
 
@@ -13,7 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
+<div class="page-content">
+    <!-- All your page content starts here -->
+</div>
 <form method="post">
     <h2>Register</h2>
     <label>Username: <input type="text" name="username" required></label><br>

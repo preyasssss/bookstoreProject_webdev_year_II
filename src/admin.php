@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'db.php';
-
+include 'navbar.php';
 // If user not logged in but remember me cookie exists, auto-login
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['rememberme'])) {
     $userId = $_COOKIE['rememberme'];
@@ -25,7 +25,9 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 ?>
-
+<div class="page-content">
+    <!-- All your page content starts here -->
+</div>
 
 <!DOCTYPE html>
 <html>

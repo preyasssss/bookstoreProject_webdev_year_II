@@ -1,10 +1,15 @@
 <?php
 include 'db.php';
 include 'Book.php';
+include 'navbar.php';
+
 
 $bookObj = new Book($conn);
 $books = $bookObj->getAllBooks();
 ?>
+<div class="page-content">
+    <!-- All your page content starts here -->
+</div>
 
 <!DOCTYPE HTML>
 <html>

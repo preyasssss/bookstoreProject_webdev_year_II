@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'navbar.php';
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ✅ CAPTCHA validation
@@ -49,7 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
+<div class="page-content">
+    <!-- All your page content starts here -->
+</div>
 
 <!DOCTYPE html>
 <html>
