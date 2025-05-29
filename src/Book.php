@@ -18,9 +18,9 @@ class Book {
         return $stmt->get_result()->fetch_assoc();
     }
 
-    public function addBook($title, $author, $price, $image) {
-        $stmt = $this->conn->prepare("INSERT INTO books (title, author, price, image) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssds", $title, $author, $price, $image);
+    public function addBook($title, $author, $price, $image_url, $description) {
+        $stmt = $this->conn->prepare("INSERT INTO books (title, author, price, image_url, description) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssdss", $title, $author, $price, $image_url, $description);
         return $stmt->execute();
     }
 
@@ -30,9 +30,9 @@ class Book {
         return $stmt->execute();
     }
 
-    public function updateBook($id, $title, $author, $price, $image) {
-        $stmt = $this->conn->prepare("UPDATE books SET title=?, author=?, price=?, image=? WHERE id=?");
-        $stmt->bind_param("ssdsi", $title, $author, $price, $image, $id);
+    public function updateBook($id, $title, $author, $price, $image_url, $description) {
+        $stmt = $this->conn->prepare("UPDATE books SET title=?, author=?, price=?, image_url=?, description=? WHERE id=?");
+        $stmt->bind_param("ssdssi", $title, $author, $price, $image_url, $description, $id);
         return $stmt->execute();
     }
 }

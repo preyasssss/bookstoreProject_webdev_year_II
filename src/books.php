@@ -1,6 +1,9 @@
 <?php
 include 'db.php';
-$result = $conn->query("SELECT * FROM books");
+include 'Book.php';
+
+$bookObj = new Book($conn);
+$books = $bookObj->getAllBooks();
 ?>
 
 <!DOCTYPE HTML>
@@ -21,17 +24,17 @@ $result = $conn->query("SELECT * FROM books");
     <!-- Book List Section -->
     <section id="books">
         <div class="container">
-            <?php while($book = $result->fetch_assoc()): ?>
+            <?php foreach ($books as $book): ?>
                 <div class="box">
-                    <h2><?= $book['title'] ?></h2>
-                    <p><strong>Author:</strong> <?= $book['author'] ?></p>
-                    <p><strong>Price:</strong> €<?= $book['price'] ?></p>
-                    <?php if ($book['image_url']): ?>
-                        <img src="<?= $book['image_url'] ?>" style="max-width: 200px;">
+                    <h2><?= htmlspecialchars($book['title']) ?></h2>
+                    <p><strong>Author:</strong> <?= htmlspecialchars($book['author']) ?></p>
+                    <p><strong>Price:</strong> €<?= number_format($book['price'], 2) ?></p>
+                    <?php if (!empty($book['image_url'])): ?>
+                        <img src="<?= htmlspecialchars($book['image_url']) ?>" style="max-width: 200px;">
                     <?php endif; ?>
-                    <p><?= $book['description'] ?></p>
+                    <p><?= nl2br(htmlspecialchars($book['description'])) ?></p>
                 </div>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </div>
     </section>
 
@@ -39,14 +42,4 @@ $result = $conn->query("SELECT * FROM books");
     <footer id="footer">
         <ul class="icons">
             <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-        </ul>
-        <ul class="copyright">
-            <li>&copy; Your Bookstore</li>
-        </ul>
-    </footer>
-
-    <script src="assets/js/main.js"></script>
-</body>
-</html>
+            <li><a href="#" class="
