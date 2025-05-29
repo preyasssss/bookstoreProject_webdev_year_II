@@ -1,43 +1,51 @@
 <?php
 session_start();
 $error = '';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include 'db.php';
+    // ✅ CAPTCHA validation
+    $recaptchaSecret = '6Lf-t00rAAAAAFAivx69pYgGF_9ty6sE9wlAYGVG';
+    $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
 
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptchaSecret}&response={$recaptchaResponse}");
+    $responseData = json_decode($verify);
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($user = $result->fetch_assoc()) {
-        if ($user['password'] === $password) { // Replace with password_hash() later
-
-            // Set session
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-
-            // Set remember me cookie if checked
-            if (isset($_POST['remember'])) {
-                // Cookie expires in 30 days
-                setcookie('rememberme', $user['id'], time() + (86400 * 30), "/");
-            } else {
-                // If not checked, clear cookie if exists
-                if (isset($_COOKIE['rememberme'])) {
-                    setcookie('rememberme', '', time() - 3600, "/");
-                }
-            }
-
-            header('Location: admin.php');
-            exit;
-        } else {
-            $error = 'Wrong password!';
-        }
+    if (!$responseData->success) {
+        $error = 'CAPTCHA verification failed. Please try again.';
     } else {
-        $error = 'User not found!';
+        include 'db.php';
+
+        $username = $_POST['username'] ?? '';
+        $password = $_POST['password'] ?? '';
+
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($user = $result->fetch_assoc()) {
+            if ($user['password'] === $password) { // Replace with password_hash() later
+
+                // Set session
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+
+                // Set remember me cookie if checked
+                if (isset($_POST['remember'])) {
+                    setcookie('rememberme', $user['id'], time() + (86400 * 30), "/");
+                } else {
+                    if (isset($_COOKIE['rememberme'])) {
+                        setcookie('rememberme', '', time() - 3600, "/");
+                    }
+                }
+
+                header('Location: admin.php');
+                exit;
+            } else {
+                $error = 'Wrong password!';
+            }
+        } else {
+            $error = 'User not found!';
+        }
     }
 }
 ?>
@@ -48,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="assets/css/main.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         input[type="checkbox"] {
             opacity: 1 !important;
@@ -63,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: white;
         }
     </style>
+    
 
 
 </head>
@@ -82,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Remember Me
         </label>
 
+        <div class="g-recaptcha" data-sitekey="6Lf-t00rAAAAAF_Zs_hAkyxr9gvPL0NUv2wpjyEz"></div>
 
         <input type="submit" value="Log In">
     </form>
