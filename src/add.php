@@ -5,8 +5,8 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-include 'db.php';
-include 'Book.php';
+require_once 'db.php';
+require_once 'Book.php';
 
 $bookObj = new Book($conn);
 $message = "";

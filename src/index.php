@@ -1,91 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Bookstore Home</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <style>
-        body {
+        /* RESET */
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding-top: 60px; /* Leaves room for navbar */
-            font-family: Arial, sans-serif;
+            padding: 0;
         }
 
-        .section {
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        iframe, video, audio, canvas {
-            display: block;
-            margin: 20px auto;
-            max-width: 90%;
-        }
-
-        canvas {
-            border: 1px solid #ccc;
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(45deg, #645862, #1b1f2a);
+            color: #333;
         }
 
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: #222;
-            z-index: 999;
+            background: #1e1e2f;
+            z-index: 1000;
         }
 
         nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 10px 20px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            list-style: none;
+            padding: 15px;
+            margin: 0;
+            gap: 30px;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
+            font-weight: bold;
         }
 
         nav ul li a:hover {
             text-decoration: underline;
         }
-    </style>
 
+        .spacer {
+            height: 70px; /* to offset the fixed navbar */
+        }
+
+        .section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px 20px;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        iframe, video, audio, canvas {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+
+        canvas {
+            border: 2px dashed #ccc;
+        }
+
+        footer {
+            background: #1e1e2f;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer .icons {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        footer .icons li a {
+            color: white;
+            font-size: 1.6em;
+        }
+    </style>
 </head>
-<body class="is-preload">
+<body>
 
     <?php include 'navbar.php'; ?>
+    <div class="spacer"></div>
 
     <section class="section">
         <h2>Welcome to Our Bookstore</h2>
-        <p>Discover, explore, and purchase your favorite books — all in one place!</p>
+        <p>Discover and explore the best collection of books right from your browser.</p>
+    </section>
+    <!-- Social Share Buttons -->
+    <div style="text-align: center; margin-top: 2em;">
+    <!-- Facebook Like -->
+    <div class="fb-like" data-href="http://localhost:8080/index.php" data-width="" data-layout="button" data-action="like" data-size="large" data-share="true"></div>
+
+    <!-- Twitter Share -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this awesome bookstore!" data-url="http://localhost:8080/index.php" data-show-count="true">Tweet</a>
+    </div>
+
+    <section class="section">
+        <h2>Watch Our Intro</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                title="Bookstore Intro" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
     </section>
 
     <section class="section">
-        <h2>Featured Video</h2>
-        <p>Watch our introduction to the bookstore</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
-            title="YouTube video player" frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </section>
-
-    <section class="section">
-        <h2>Bookstore Tour (MP4)</h2>
-        <p>A quick visual tour of the store layout and sections</p>
-        <video width="640" height="360" controls>
+        <h2>Video Tour (MP4)</h2>
+        <p>Get a quick overview of our store in this video.</p>
+        <video controls width="640" height="360">
             <source src="media/tour.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </section>
 
     <section class="section">
-        <h2>Our Jingle (MP3)</h2>
-        <p>Listen to our catchy bookstore tune!</p>
+        <h2>Listen to Our Jingle (MP3)</h2>
         <audio controls>
             <source src="media/jingle.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
@@ -93,42 +138,41 @@
     </section>
 
     <section class="section">
-        <h2>Interactive Canvas</h2>
-        <p>Check out this fun drawing</p>
+        <h2>Canvas Fun</h2>
         <canvas id="myCanvas" width="400" height="200"></canvas>
         <script>
             const canvas = document.getElementById('myCanvas');
             const ctx = canvas.getContext('2d');
-            ctx.fillStyle = 'lightblue';
+            ctx.fillStyle = '#b3e5fc';
             ctx.fillRect(0, 0, 400, 200);
-            ctx.fillStyle = 'darkblue';
-            ctx.font = '24px Arial';
-            ctx.fillText('Welcome to the Bookstore!', 50, 100);
+            ctx.fillStyle = '#0277bd';
+            ctx.font = '20px sans-serif';
+            ctx.fillText("Welcome to our bookstore!", 70, 100);
         </script>
     </section>
 
     <section class="section">
-        <h2>Find Us on the Map</h2>
-        <p>We're right near Alexandru Ioan Cuza University</p>
+        <h2>Find Us Near UAIC</h2>
+        <p>Our bookstore is just steps away from the university.</p>
         <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10848.625868408531!2d27.561204274859!3d47.1743730247819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40cafb61af5ef507%3A0x95f1e37c73c23e74!2sAlexandru%20Ioan%20Cuza%20University!5e0!3m2!1sen!2sro!4v1748511768524!5m2!1sen!2sro" 
             width="600" 
             height="450" 
             style="border:0;" 
-            allowfullscreen="" 
+            allowfullscreen 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     </section>
 
-    <footer id="footer">
+    <footer>
         <ul class="icons">
-            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://www.facebook.com/cosmin.tincu.773/" class="icon brands fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+            <li><a href="https://instagram.com/cosmintincuu/" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
         </ul>
-        <p>&copy; Your Bookstore</p>
+
+        <p>&copy; 2025 Your Bookstore</p>
     </footer>
 
-    <script src="assets/js/main.js"></script>
 </body>
 </html>

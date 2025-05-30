@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db.php';
+require_once 'db.php';
 include 'navbar.php';
 // If user not logged in but remember me cookie exists, auto-login
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['rememberme'])) {

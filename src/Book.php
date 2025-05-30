@@ -35,5 +35,19 @@ class Book {
         $stmt->bind_param("ssdssi", $title, $author, $price, $image_url, $description, $id);
         return $stmt->execute();
     }
+
+    public function searchBooks($keyword) {
+    $keyword = "%$keyword%";
+    $stmt = $this->conn->prepare("SELECT * FROM books WHERE title LIKE ? OR author LIKE ?");
+    $stmt->bind_param("ss", $keyword, $keyword);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $books = [];
+    while ($row = $result->fetch_assoc()) {
+        $books[] = $row;
+    }
+    return $books;
+    }
+
 }
 ?>
