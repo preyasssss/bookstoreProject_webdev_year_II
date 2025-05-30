@@ -103,14 +103,33 @@
         <h2>Welcome to Our Bookstore</h2>
         <p>Discover and explore the best collection of books right from your browser.</p>
     </section>
-    <!-- Social Share Buttons -->
-    <div style="text-align: center; margin-top: 2em;">
-    <!-- Facebook Like -->
-    <div class="fb-like" data-href="http://localhost:8080/index.php" data-width="" data-layout="button" data-action="like" data-size="large" data-share="true"></div>
+    <section class="section">
+        <h2>Like and Share Our Website</h2>
+        <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+            <button onclick="likeSite()" style="background: #4267B2; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 1em;">
+                👍 Like (<span id="like-count">0</span>)
+            </button>
+            <button onclick="shareSite()" style="background: #1DA1F2; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 1em;">
+                🔗 Share (copied!)
+            </button>
+        </div>
+    </section>
 
-    <!-- Twitter Share -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this awesome bookstore!" data-url="http://localhost:8080/index.php" data-show-count="true">Tweet</a>
-    </div>
+    <script>
+        let likeCount = localStorage.getItem('siteLikes') || 0;
+        document.getElementById('like-count').textContent = likeCount;
+
+        function likeSite() {
+            likeCount++;
+            localStorage.setItem('siteLikes', likeCount);
+            document.getElementById('like-count').textContent = likeCount;
+        }
+
+        function shareSite() {
+            navigator.clipboard.writeText("http://localhost:8080/index.php");
+            alert("Link copied to clipboard!");
+        }
+    </script>
 
     <section class="section">
         <h2>Watch Our Intro</h2>
@@ -167,8 +186,8 @@
 
     <footer>
         <ul class="icons">
-            <li><a href="https://www.facebook.com/cosmin.tincu.773/" class="icon brands fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
-            <li><a href="https://instagram.com/cosmintincuu/" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+            <li><a href="https://www.facebook.com/cosmin.tincu.773/" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://instagram.com/cosmintincuu/" target="_blank"><i class="fab fa-instagram"></i></a></li>
         </ul>
 
         <p>&copy; 2025 Your Bookstore</p>

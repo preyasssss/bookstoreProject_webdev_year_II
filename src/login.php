@@ -1,6 +1,5 @@
 <?php
 session_start();
-include 'navbar.php';
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ✅ CAPTCHA validation
@@ -80,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </head>
 <body>
+     <?php include 'navbar.php'; ?>
     <h2>Login</h2>
     <?php if ($error): ?>
         <p style="color:red;"><?= $error ?></p>
