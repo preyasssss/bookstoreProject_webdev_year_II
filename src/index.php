@@ -103,17 +103,22 @@
         <h2>Welcome to Our Bookstore</h2>
         <p>Discover and explore the best collection of books right from your browser.</p>
     </section>
-    <section class="section">
-        <h2>Like and Share Our Website</h2>
-        <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-            <button onclick="likeSite()" style="background: #4267B2; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 1em;">
-                👍 Like (<span id="like-count">0</span>)
-            </button>
-            <button onclick="shareSite()" style="background: #1DA1F2; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 1em;">
-                🔗 Share (copied!)
-            </button>
+    <<section class="section">
+        <h2>Like, Share & Clock</h2>
+        <div id="social-buttons" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+            <div>
+                <button id="like-btn" class="button primary">👍 Like</button>
+                <span id="like-count" style="margin-left: 10px; font-weight: bold;">0</span>
+            </div>
+            <div>
+                <button id="share-btn" class="button">🔗 Share</button>
+            </div>
+            <div>
+                <h3>Ceas live:</h3>
+                <p id="live-clock" style="font-size: 1.5em; font-weight: bold;"></p>
+            </div>
         </div>
-    </section>
+        </section>
 
     <script>
         let likeCount = localStorage.getItem('siteLikes') || 0;
@@ -130,6 +135,10 @@
             alert("Link copied to clipboard!");
         }
     </script>
+
+    
+
+
 
     <section class="section">
         <h2>Watch Our Intro</h2>
@@ -192,6 +201,7 @@
 
         <p>&copy; 2025 Your Bookstore</p>
     </footer>
+    <script src="assets/js/site.js"></script>
 
 </body>
 </html>
