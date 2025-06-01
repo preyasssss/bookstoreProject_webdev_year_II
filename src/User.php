@@ -4,7 +4,7 @@ class User {
 
     public function __construct($db) {
         $this->conn = $db;
-        session_start(); // Start session when class is used
+        session_start(); 
     }
 
     public function register($username, $password) {

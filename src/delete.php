@@ -1,6 +1,5 @@
 <?php
 session_start();
-include 'navbar.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -17,5 +16,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $bookObj->deleteBook($id);
 }
 
+// Redirect AFTER deleting and BEFORE any output
 header("Location: books.php");
 exit;

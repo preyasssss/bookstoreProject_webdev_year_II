@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bookstore Home</title>
+    <title>Acasa</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- Font Awesome for icons -->
+    <!-- font-awesome pt iconite -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <style>
-        /* RESET */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -50,7 +49,7 @@
         }
 
         .spacer {
-            height: 70px; /* to offset the fixed navbar */
+            height: 70px; 
         }
 
         .section {
@@ -100,11 +99,11 @@
     <div class="spacer"></div>
 
     <section class="section">
-        <h2>Welcome to Our Bookstore</h2>
-        <p>Discover and explore the best collection of books right from your browser.</p>
+        <h2>Bun venit in libraria noastra online! :D</h2>
+        <p>Exploreaza-ne vasta colectie de carti alese in mod special de creatorul site-ului!</p>
     </section>
-    <<section class="section">
-        <h2>Like, Share & Clock</h2>
+    <section class="section">
+        <h2>Like, Share & Ceas</h2>
         <div id="social-buttons" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
             <div>
                 <button id="like-btn" class="button primary">👍 Like</button>
@@ -121,52 +120,55 @@
         </section>
 
     <script>
-        let likeCount = localStorage.getItem('siteLikes') || 0;
-        document.getElementById('like-count').textContent = likeCount;
+        document.getElementById('like-btn').addEventListener('click', likeSite);
+        document.getElementById('share-btn').addEventListener('click', shareSite);
 
-        function likeSite() {
-            likeCount++;
-            localStorage.setItem('siteLikes', likeCount);
-            document.getElementById('like-count').textContent = likeCount;
+        // Live Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').textContent = now.toLocaleTimeString();
         }
-
-        function shareSite() {
-            navigator.clipboard.writeText("http://localhost:8080/index.php");
-            alert("Link copied to clipboard!");
-        }
+        setInterval(updateClock, 1000);
+        updateClock(); // initial call
     </script>
+
 
     
 
 
 
-    <section class="section">
-        <h2>Watch Our Intro</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                title="Bookstore Intro" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe>
+    <section id="youtube">
+        <div style="text-align: center;">
+            <h2 style="color: white">O melodie apreciata de creator.</h2>
+            <p style="color: white">Este un video foarte interesant de pe YouTube!</p>
+            <iframe width="560" height="315"
+                src="https://www.youtube.com/embed/NlwIDxCjL-8"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
     </section>
 
+
     <section class="section">
-        <h2>Video Tour (MP4)</h2>
-        <p>Get a quick overview of our store in this video.</p>
+        <h2>Alta melodie foarte buna!</h2>
+        <p>De data asta este un .mp4 de pe computerul personal al creatorului.</p>
         <video controls width="640" height="360">
-            <source src="media/tour.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            <source src="images/lean_ginseng2002.mp4" type="video/mp4">
         </video>
     </section>
 
     <section class="section">
-        <h2>Listen to Our Jingle (MP3)</h2>
+        <h2>Incearca si cantecul acesta! (MP3)</h2>
         <audio controls>
-            <source src="media/jingle.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
+            <source src="images/nirvana.mp3" type="audio/mpeg">
         </audio>
     </section>
 
     <section class="section">
-        <h2>Canvas Fun</h2>
+        <h2>Distractie cu Canvas!</h2>
         <canvas id="myCanvas" width="400" height="200"></canvas>
         <script>
             const canvas = document.getElementById('myCanvas');
@@ -175,13 +177,13 @@
             ctx.fillRect(0, 0, 400, 200);
             ctx.fillStyle = '#0277bd';
             ctx.font = '20px sans-serif';
-            ctx.fillText("Welcome to our bookstore!", 70, 100);
+            ctx.fillText("O incercare de canvas :-).", 70, 100);
         </script>
     </section>
 
     <section class="section">
-        <h2>Find Us Near UAIC</h2>
-        <p>Our bookstore is just steps away from the university.</p>
+        <h2>Daca ai intrebari, ma poti gasi la UAIC</h2>
+        <p>Deobicei imi petrec timpul la seminar sau in parcul de langa universitate.</p>
         <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10848.625868408531!2d27.561204274859!3d47.1743730247819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40cafb61af5ef507%3A0x95f1e37c73c23e74!2sAlexandru%20Ioan%20Cuza%20University!5e0!3m2!1sen!2sro!4v1748511768524!5m2!1sen!2sro" 
             width="600" 
@@ -199,7 +201,7 @@
             <li><a href="https://instagram.com/cosmintincuu/" target="_blank"><i class="fab fa-instagram"></i></a></li>
         </ul>
 
-        <p>&copy; 2025 Your Bookstore</p>
+        <p>&copy; 2025 Tincu Cosmin-David M524</p>
     </footer>
     <script src="assets/js/site.js"></script>
 

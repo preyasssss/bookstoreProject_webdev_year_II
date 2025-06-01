@@ -2,7 +2,7 @@
 session_start();
 require_once 'db.php';
 include 'navbar.php';
-// If user not logged in but remember me cookie exists, auto-login
+// auto log in daca nu este logat, dar exista cookie
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['rememberme'])) {
     $userId = $_COOKIE['rememberme'];
     $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
@@ -14,19 +14,19 @@ if (!isset($_SESSION['user_id']) && isset($_COOKIE['rememberme'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
     } else {
-        // Invalid cookie, clear it
+        // cookie invalid => il sterge
         setcookie('rememberme', '', time() - 3600, "/");
     }
 }
 
-// Now check if logged in
+// vf daca e logat
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
 ?>
 <div class="page-content">
-    <!-- All your page content starts here -->
+
 </div>
 
 <!DOCTYPE html>
@@ -36,8 +36,8 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <h1>Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</h1>
-    <p>This is the protected admin area.</p>
+    <h1>Bun venit, <?= htmlspecialchars($_SESSION['username']) ?>!</h1>
+    <p>Acesta este un hub protejat, doar pentru administratori</p>
     <a href="logout.php">Logout</a>
 </body>
 </html>

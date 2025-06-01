@@ -2,7 +2,7 @@
 session_start();
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // ✅ CAPTCHA validation
+    // captcha)))))))))
     $recaptchaSecret = '6Lf-t00rAAAAAFAivx69pYgGF_9ty6sE9wlAYGVG';
     $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
 
@@ -23,13 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $stmt->get_result();
 
         if ($user = $result->fetch_assoc()) {
-            if ($user['password'] === $password) { // Replace with password_hash() later
+            if ($user['password'] === $password) {
 
-                // Set session
+                // sesiune
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
 
-                // Set remember me cookie if checked
+                // cookie remember me
                 if (isset($_POST['remember'])) {
                     setcookie('rememberme', $user['id'], time() + (86400 * 30), "/");
                 } else {

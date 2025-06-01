@@ -98,10 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </section>
 
 <footer id="footer">
-    <ul class="icons">
-        <li><a href="#" class="icon brands fa-twitter"></a></li>
-        <li><a href="#" class="icon brands fa-facebook"></a></li>
-    </ul>
     <p>&copy; Your Bookstore</p>
 </footer>
 

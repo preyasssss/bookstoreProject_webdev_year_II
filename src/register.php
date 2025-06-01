@@ -17,13 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <div class="page-content">
-    <!-- All your page content starts here -->
+
 </div>
 <form method="post">
     <h2>Register</h2>
     <label>Username: <input type="text" name="username" required></label><br>
-    <label>Password: <input type="password" name="password" required></label><br>
+    <label>Parola: <input type="password" name="password" required></label><br>
     <button type="submit">Register</button>
 </form>
 <p><?= $message ?></p>
-<a href="login.php">Already have an account? Login</a>
+<a href="login.php">Deja ai un cont? Login</a>
