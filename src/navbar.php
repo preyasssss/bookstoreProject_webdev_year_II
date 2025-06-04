@@ -13,6 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <li><a href="admin.php">Admin</a></li>
             <li><a href="add.php">Adauga o carte</a></li>
             <li><a href="delete.php">Delete Book</a></li>
+            <li><a href="logout.php">Log out</a></li>
         <?php endif; ?>
     </ul>
 </nav>
